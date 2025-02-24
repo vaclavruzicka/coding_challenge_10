@@ -66,3 +66,27 @@ console.log(order1.getOrderDetails())
 
 //Logging the product details after the order was created.
 console.log(prod1.getDetails())
+
+//Task 3 - Creating an Inventory Class
+
+//Creating a new class called inventory that can call upon products and place them into an array.
+class Inventory {
+    constructor () {
+        this.products =[] //Creates the empty array to place products into.
+    }
+    addProduct(product){
+        this.products.push(product) //Adds products to the array.
+    }
+    listProducts(){
+        return this.products.forEach(prod => console.log(prod.getDetails())) //Lists the details of all products in the array.
+    }
+}
+
+//Creating a new inventory using the constructor.
+const inventory = new Inventory()
+
+//Adding the product we created to the array of products.
+inventory.addProduct(prod1)
+
+//Returns the details of the products in the updated array.
+inventory.listProducts()
