@@ -31,3 +31,38 @@ prod1.updateStock(3)
 
 //Logging the updated details.
 console.log(prod1.getDetails())
+
+//Task 2 - Creating an Order Class
+
+//Creating a class called order that can refrence the product class using the constructor.
+class Order {
+    constructor (orderID, product, quantity){
+
+        this.orderID = orderID //Sources orderId in the instance.
+        this.product = product //Allows for product to be called back to.
+        this.quantity = quantity //Sources quantity in the instance.
+
+        //Writing an if else statmenet to decrease the sotck of a product if an order is placed.
+        if (this.product.stock >= quantity) {
+            this.product.stock -= quantity
+        } else {
+            return "Out of Stock"
+        }
+    }
+
+    //Writes a function that retreives the details of an order.
+    getOrderDetails() {
+        return `Order ID: ${this.orderID}, Product${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.product.price * this.quantity}.`
+    }
+
+
+}
+
+//Creating a new order using the constructor.
+const order1 = new Order(501, prod1, 2)
+
+//Logging the order details.
+console.log(order1.getOrderDetails())
+
+//Logging the product details after the order was created.
+console.log(prod1.getDetails())
