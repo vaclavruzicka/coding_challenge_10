@@ -94,6 +94,14 @@ class Inventory {
     listOrders(){
         this.orders.forEach(order => console.log(order.getOrderDetails()))
     }
+
+    //Part of Task 5 - Creating a new function that allows for the restocking of a product.
+    restockProduct(productID, quantity){
+        const product = this.products.find(prod => prod.id === productID) //Check to see if both product IDs are strictly equal.
+        if (product){
+            product.stock += quantity //If the product is found, the quantity restocked is added to the current stock.
+        }    
+    }
 }
 
 //Creating a new inventory using the constructor.
@@ -114,4 +122,12 @@ inventory.placeOrder(601, prod1, 2)
 inventory.listOrders()
 
 //Logging the updated product array and its details.
+console.log(prod1.getDetails())
+
+//Task 5 - Implementing Product Restock
+
+//Using restockProduct in order to restock the product.
+inventory.restockProduct(101, 5)
+
+//Logging the updated product details after the restock.
 console.log(prod1.getDetails())
