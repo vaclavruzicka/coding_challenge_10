@@ -52,7 +52,7 @@ class Order {
 
     //Writes a function that retreives the details of an order.
     getOrderDetails() {
-        return `Order ID: ${this.orderID}, Product${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.product.price * this.quantity}.`
+        return `Order ID: ${this.orderID}, Product: ${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.product.price * this.quantity}.`
     }
 
 
@@ -72,13 +72,27 @@ console.log(prod1.getDetails())
 //Creating a new class called inventory that can call upon products and place them into an array.
 class Inventory {
     constructor () {
-        this.products =[] //Creates the empty array to place products into.
+        this.products = [] //Creates the empty array to place products into.
+        this.orders = [] //Part of Task 4 - crates an empty array to place orders into.
     }
     addProduct(product){
         this.products.push(product) //Adds products to the array.
     }
     listProducts(){
         return this.products.forEach(prod => console.log(prod.getDetails())) //Lists the details of all products in the array.
+    }
+
+    //Part of Task 4 - Creates a new function that places an order if the specified quantity is greater than or equal to the current stock.
+    placeOrder(orderID, product, quantity) {
+        if (product.stock >= quantity) {
+        const newOrder = new Order(orderID, product, quantity)
+        this.orders.push(newOrder)
+        
+        }
+    }
+    //Part of Task 4 - Creating a new function that console logs each order's details in the order array.
+    listOrders(){
+        this.orders.forEach(order => console.log(order.getOrderDetails()))
     }
 }
 
@@ -90,3 +104,14 @@ inventory.addProduct(prod1)
 
 //Returns the details of the products in the updated array.
 inventory.listProducts()
+
+//Task 4 - Implementing Order Management
+
+//Creating a new order  using placeOrder.
+inventory.placeOrder(601, prod1, 2)
+
+//Logging the updated order array.
+inventory.listOrders()
+
+//Logging the updated product array and its details.
+console.log(prod1.getDetails())
